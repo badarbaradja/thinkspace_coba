@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - ThinkSpace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- LeafletJS CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A192F;
+            color: #F0F4F8;
+        }
+        .glass-card {
+            background: rgba(58, 124, 165, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(58, 124, 165, 0.3);
+        }
+        .cta-gold {
+            background-color: #F8BA17;
+            color: #0A192F;
+        }
+        .cta-gold:hover {
+            background-color: #f9c53a;
+        }
+        .cta-outline {
+            border: 2px solid #F8BA17;
+            color: #F8BA17;
+            background-color: transparent;
+        }
+        .cta-outline:hover {
+            background-color: #F8BA17;
+            color: #0A192F;
+        }
+        .nav-link.active {
+            color: #F8BA17;
+            font-weight: 600;
+        }
+        /* Contact Card Style */
+        .contact-card {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(58, 124, 165, 0.4);
+        }
+
+        /* Page Wipe Transition Effect */
+        #page-transition-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0A192F;
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+        }
+        #page-transition-layer.is-active {
+            transform: translateY(0);
+        }
+        #page-transition-layer.is-leaving {
+            transform: translateY(-100%);
+        }
+        
+        /* Content Fade for View Switch */
+        .view-section {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+        .view-section.is-hidden {
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            position: absolute;
+        }
+
+         /* Leaflet Map Popup Style */
+        .custom-popup .leaflet-popup-content-wrapper {
+            background: #0A192F;
+            color: #F0F4F8;
+            border: 1px solid #3A7CA5;
+            border-radius: 12px;
+            padding: 0;
+            overflow: hidden;
+        }
+        .custom-popup .leaflet-popup-content { margin: 0; width: 256px !important; }
+        .custom-popup .leaflet-popup-tip { background: #0A192F; }
+        .custom-popup .leaflet-popup-close-button { color: #F0F4F8 !important; top: 8px !important; right: 8px !important; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="page-transition-layer"></div>
+
+    <!-- Header / Navigation -->
+    <header class="bg-[#0A192F]/80 backdrop-blur-sm sticky top-0 left-0 right-0 z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" id="logo" class="flex items-center space-x-3 text-2xl font-bold">
+                <img src="img/logo kuning.png" alt="ThinkSpace Logo" class="w-10 h-10 rounded-full object-cover">
+                <span class="text-white">Think<span class="text-[#F8BA17]">Space</span></span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Home</a>
+                <a href="fitur.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Fitur</a>
+                <a href="mitra.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Untuk Mitra</a>
+                <a href="kontak.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300 active">Kontak</a>
+            </nav>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="masuk.html" class="cta-outline font-semibold py-2 px-5 rounded-lg transition duration-300">Masuk</a>
+                <a href="daftar.html" class="cta-gold font-semibold py-2 px-5 rounded-lg transition duration-300">Daftar</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+             <a href="index.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Home</a>
+            <a href="fitur.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Fitur</a>
+            <a href="mitra.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Untuk Mitra</a>
+            <a href="kontak.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile active">Kontak</a>
+            <div class="mt-4 pt-4 border-t border-gray-800 space-y-3">
+                <a href="masuk.html" class="block text-center cta-outline font-semibold py-2 px-5 rounded-lg transition duration-300">Masuk</a>
+                <a href="daftar.html" class="block text-center cta-gold font-semibold py-2 px-5 rounded-lg transition duration-300">Daftar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Contact View -->
+        <section id="contact-view" class="view-section py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                 <div class="max-w-4xl mx-auto text-center mb-16">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white">Hubungi Kami</h1>
+                    <p class="text-lg text-gray-400 mt-4">Punya pertanyaan, butuh demo, atau ingin bermitra? Tim kami siap membantu Anda.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+                    <!-- Left Column: Contact Info & Cards -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-6">Saluran Langsung</h2>
+                        <div class="space-y-6">
+                            <a href="mailto:rafiansyahbimaa@gmail.com" class="contact-card glass-card flex items-center p-6 rounded-xl border-2 border-[#3A7CA5]/50">
+                                <i class="fas fa-envelope text-3xl text-[#F8BA17] w-12 text-center"></i>
+                                <div class="ml-5"><h4 class="text-lg font-semibold text-white">Email Kami</h4><p class="text-gray-400">rafiansyahbimaa@thinkspace.id</p></div>
+                            </a>
+                            <a href="https://wa.me/6289526525133" target="_blank" class="contact-card glass-card flex items-center p-6 rounded-xl border-2 border-[#3A7CA5]/50">
+                                <i class="fab fa-whatsapp text-3xl text-[#F8BA17] w-12 text-center"></i>
+                                <div class="ml-5"><h4 class="text-lg font-semibold text-white">WhatsApp</h4><p class="text-gray-400">+62 812-3456-7890</p></div>
+                            </a>
+                            <a href="#" id="show-map-btn" class="contact-card glass-card flex items-center p-6 rounded-xl border-2 border-[#3A7CA5]/50">
+                                <i class="fas fa-map-marker-alt text-3xl text-[#F8BA17] w-12 text-center"></i>
+                                <div class="ml-5"><h4 class="text-lg font-semibold text-white">Lokasi Kantor</h4><p class="text-gray-400">Klik untuk melihat peta</p></div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Right Column: Contact Form -->
+                    <div class="glass-card rounded-xl p-8 border-2 border-[#3A7CA5]">
+                         <h2 class="text-2xl font-bold text-white mb-6">Kirim Pesan</h2>
+                        <form class="space-y-6">
+                            <div><label for="name" class="block text-sm font-medium text-gray-300 mb-1">Nama</label><input type="text" id="name" class="w-full bg-gray-900/50 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-[#F8BA17] focus:border-[#F8BA17]" placeholder="Nama Lengkap Anda"></div>
+                            <div><label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label><input type="email" id="email" class="w-full bg-gray-900/50 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-[#F8BA17] focus:border-[#F8BA17]" placeholder="email@anda.com"></div>
+                            <div><label for="message" class="block text-sm font-medium text-gray-300 mb-1">Pesan</label><textarea id="message" rows="5" class="w-full bg-gray-900/50 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-[#F8BA17] focus:border-[#F8BA17]" placeholder="Tuliskan pesan Anda di sini..."></textarea></div>
+                            <div><button type="submit" class="w-full cta-gold font-semibold py-3 px-6 rounded-lg transition duration-300">Kirim Pesan</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location View (Hidden by default) -->
+        <section id="location-view" class="view-section is-hidden py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="mb-8">
+                     <button id="back-to-contact-btn" class="flex items-center text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-arrow-left mr-3"></i>
+                        Kembali ke Kontak
+                    </button>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                    <!-- Left: Image & Details -->
+                    <div class="space-y-6">
+                        <img src="https://telkomuniversity.ac.id/wp-content/uploads/2019/07/Bandung-Techno-Park-Telkom-University.jpg" alt="Gedung Bandung Techno Park" class="rounded-xl shadow-2xl w-full h-80 object-cover">
+                        <h2 class="text-3xl font-bold text-white pt-4">Kantor Pusat ThinkSpace</h2>
+                        <p class="text-gray-300 text-lg">Gedung Bandung Techno Park (BTP), Telkom University, Jl. Telekomunikasi Terusan Buah Batu, Sukapura, Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40257</p>
+                        <div>
+                             <h4 class="text-lg font-semibold text-white mb-2">Kontak Kantor</h4>
+                             <p class="text-gray-400">Telepon: (022) 123-4567</p>
+                        </div>
+                    </div>
+                    <!-- Right: Map -->
+                    <div>
+                         <div id="map" class="h-[500px] rounded-lg z-10 shadow-2xl border-2 border-[#3A7CA5]"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- LeafletJS JS for Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Cinematic Page Transition
+            const transitionLayer = document.getElementById('page-transition-layer');
+            window.addEventListener('load', () => {
+                transitionLayer.classList.add('is-leaving');
+            });
+            document.querySelectorAll('a').forEach(link => {
+                const href = link.getAttribute('href');
+                const target = link.getAttribute('target');
+                if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:') && target !== '_blank') {
+                    link.addEventListener('click', function(e) {
+                        if (window.location.pathname.endsWith(href.split('/').pop())) {
+                           return;
+                        }
+                        e.preventDefault();
+                        transitionLayer.classList.add('is-active');
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 600); // Match animation duration
+                    });
+                }
+            });
+
+            // Contact View Switch Logic
+            const contactView = document.getElementById('contact-view');
+            const locationView = document.getElementById('location-view');
+            const showMapBtn = document.getElementById('show-map-btn');
+            const backToContactBtn = document.getElementById('back-to-contact-btn');
+            let map = null;
+
+            const switchToLocationView = () => {
+                contactView.classList.add('is-hidden');
+                setTimeout(() => {
+                    contactView.style.display = 'none';
+                    locationView.style.display = 'block';
+                     setTimeout(() => {
+                        locationView.classList.remove('is-hidden');
+                        initializeMap();
+                     }, 50)
+                }, 400);
+            };
+
+            const switchToContactView = () => {
+                locationView.classList.add('is-hidden');
+                setTimeout(() => {
+                    locationView.style.display = 'none';
+                    contactView.style.display = 'block';
+                    setTimeout(() => {
+                        contactView.classList.remove('is-hidden');
+                    }, 50)
+                }, 400);
+            };
+
+            showMapBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchToLocationView();
+            });
+
+            backToContactBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchToContactView();
+            });
+
+            function initializeMap() {
+                if (map) return; // Initialize only once
+                
+                const btpCoordinates = [-6.9750, 107.6300];
+                map = L.map('map').setView(btpCoordinates, 17);
+
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                    subdomains: 'abcd', maxZoom: 20
+                }).addTo(map);
+
+                const popupContent = `<div class="w-64"><img src="https://placehold.co/600x400/0A192F/FFFFFF?text=Gedung+BTP" alt="Gedung BTP" class="w-full h-32 object-cover"><div class="p-3"><h3 class="font-bold text-lg text-white">Kantor Pusat ThinkSpace</h3><p class="text-sm text-gray-300 mb-2">Gedung Bandung Techno Park, Telkom University</p></div></div>`;
+                
+                L.marker(btpCoordinates).addTo(map)
+                    .bindPopup(popupContent, { 'className': 'custom-popup' }).openPopup();
+                
+                // Invalidate size to ensure it renders correctly after being hidden
+                setTimeout(() => map.invalidateSize(), 100);
+            }
+        });
+    </script>
+</body>
+</html>

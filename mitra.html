@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitra - ThinkSpace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A192F;
+            color: #F0F4F8;
+        }
+        .glass-card {
+            background: rgba(58, 124, 165, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(58, 124, 165, 0.3);
+        }
+        .cta-gold {
+            background-color: #F8BA17;
+            color: #0A192F;
+        }
+        .cta-gold:hover {
+            background-color: #f9c53a;
+        }
+        .cta-outline {
+            border: 2px solid #F8BA17;
+            color: #F8BA17;
+            background-color: transparent;
+        }
+        .cta-outline:hover {
+            background-color: #F8BA17;
+            color: #0A192F;
+        }
+        .nav-link.active {
+            color: #F8BA17;
+            font-weight: 600;
+        }
+        .package-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(248, 186, 23, 0.1), 0 10px 10px -5px rgba(248, 186, 23, 0.04);
+        }
+        .highlight-package {
+            border: 2px solid #F8BA17;
+            transform: scale(1.05);
+        }
+        /* Social Media Icons Style */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem; /* Jarak antar ikon */
+            margin-bottom: 1.5rem; /* Jarak ke teks copyright */
+        }
+        .social-media a {
+            color: #a0aec0; /* Warna ikon abu-abu */
+            font-size: 1.5rem; /* Ukuran ikon */
+            transition: color 0.3s ease;
+        }
+        .social-media a:hover {
+            color: #F8BA17; /* Warna gold saat hover */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="bg-[#0A192F]/80 backdrop-blur-sm sticky top-0 left-0 right-0 z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" id="logo" class="flex items-center space-x-3 text-2xl font-bold">
+                <img src="img/logo kuning.png" alt="ThinkSpace Logo" class="w-10 h-10 rounded-full object-cover">
+                <span class="text-white">Think<span class="text-[#F8BA17]">Space</span></span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Home</a>
+                <a href="fitur.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Fitur</a>
+                <a href="mitra.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300 active">Mitra</a>
+                <a href="kontak.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Kontak</a>
+            </nav>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="masuk.html" class="cta-outline font-semibold py-2 px-5 rounded-lg transition duration-300">Masuk</a>
+                <a href="daftar.html" class="cta-gold font-semibold py-2 px-5 rounded-lg transition duration-300">Daftar</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+             <a href="index.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Home</a>
+            <a href="fitur.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Fitur</a>
+            <a href="mitra.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile active">Mitra</a>
+            <a href="kontak.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Kontak</a>
+            <div class="mt-4 pt-4 border-t border-gray-800 space-y-3">
+                <a href="masuk.html" class="block text-center cta-outline font-semibold py-2 px-5 rounded-lg transition duration-300">Masuk</a>
+                <a href="daftar.html" class="block text-center cta-gold font-semibold py-2 px-5 rounded-lg transition duration-300">Daftar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+       <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white">Paket Kemitraan ThinkSpace</h1>
+                    <p class="text-lg text-gray-400 mt-4 mb-16">Temukan paket yang paling sesuai dengan kebutuhan usaha Anda. Dari kafe independen hingga jaringan co-working besar.</p>
+                </div>
+
+                <!-- Pricing Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+                    <!-- Personal Package -->
+                    <div class="package-card glass-card rounded-xl p-8 text-left border-2 border-transparent">
+                        <h3 class="text-2xl font-bold text-white">Personal</h3>
+                        <p class="text-gray-400 mt-2 mb-6">Untuk kafe atau ruang kerja tunggal.</p>
+                        <p class="text-4xl font-bold text-white mb-6">Rp 99.000<span class="text-lg font-medium text-gray-400">/bulan</span></p>
+                        <ul class="space-y-3 text-gray-300 mb-8">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Visibilitas di Peta</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Manajemen Ulasan</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Dashboard Analitik Dasar</li>
+                        </ul>
+                        <button class="choose-package-btn w-full cta-outline font-bold py-3 rounded-lg transition duration-300" data-package="Personal" data-price="99000">Pilih Paket</button>
+                    </div>
+
+                    <!-- Team Package (Highlighted) -->
+                    <div class="package-card glass-card rounded-xl p-8 text-left highlight-package relative">
+                        <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-[#F8BA17] text-[#0A192F] text-sm font-bold px-4 py-1 rounded-full">PALING POPULER</div>
+                        <h3 class="text-2xl font-bold text-white">Tim</h3>
+                        <p class="text-gray-400 mt-2 mb-6">Untuk usaha yang sedang berkembang dan butuh promosi lebih.</p>
+                        <p class="text-4xl font-bold text-white mb-6">Rp 299.000<span class="text-lg font-medium text-gray-400">/bulan</span></p>
+                         <ul class="space-y-3 text-gray-300 mb-8">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Semua di paket Personal</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Slot Mitra Premium</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span><span class="font-bold">Data Perilaku Pengguna</span><br><span class="text-sm text-gray-400">Prediksi tren dan sesuaikan strategi bisnis Anda.</span></span></li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Dashboard Analitik Lengkap</li>
+                        </ul>
+                        <button class="choose-package-btn w-full cta-gold font-bold py-3 rounded-lg transition duration-300" data-package="Tim" data-price="299000">Pilih Paket</button>
+                    </div>
+
+                    <!-- Enterprise Package -->
+                    <div class="package-card glass-card rounded-xl p-8 text-left border-2 border-transparent">
+                        <h3 class="text-2xl font-bold text-white">Enterprise</h3>
+                        <p class="text-gray-400 mt-2 mb-6">Solusi khusus untuk jaringan usaha atau waralaba besar.</p>
+                        <p class="text-4xl font-bold text-white mb-6">Kustom</p>
+                        <ul class="space-y-3 text-gray-300 mb-8">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Semua di paket Tim</li>
+                             <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Manajemen Multi-lokasi</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>API & Integrasi Khusus</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Dukungan Prioritas</li>
+                        </ul>
+                        <a href="kontak.html" class="block text-center w-full cta-outline font-bold py-3 rounded-lg transition duration-300">Hubungi Kami</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Comparison Section -->
+        <section class="py-16 md:py-24 bg-[#3A7CA5]/10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Perbandingan Keuntungan Paket</h2>
+                    <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">Lihat lebih detail apa saja yang akan Anda dapatkan dari setiap paket.</p>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-[700px] text-left">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="p-4 text-lg font-bold text-white">Fitur</th>
+                                <th class="p-4 text-center text-lg font-bold text-white">Personal</th>
+                                <th class="p-4 text-center text-lg font-bold text-[#F8BA17]">Tim</th>
+                                <th class="p-4 text-center text-lg font-bold text-white">Enterprise</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr class="border-b border-gray-800">
+                                <td class="p-4 font-semibold">Profil Lengkap di Platform</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="p-4 font-semibold">Manajemen Ulasan Pelanggan</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="p-4 font-semibold">Dashboard Analitik Pengunjung</td>
+                                <td class="p-4 text-center">Dasar</td>
+                                <td class="p-4 text-center">Lengkap</td>
+                                <td class="p-4 text-center">Lengkap</td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="p-4 font-semibold">Slot di "Mitra Premium"</td>
+                                <td class="p-4 text-center text-gray-500 text-2xl">-</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                            </tr>
+                             <tr class="border-b border-gray-800">
+                                <td class="p-4 font-semibold">Promosi di Media Sosial ThinkSpace</td>
+                                <td class="p-4 text-center text-gray-500 text-2xl">-</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                            </tr>
+                             <tr class="border-b border-gray-800">
+                                <td class="p-4 font-semibold">Data Perilaku & Prediksi Pengguna</td>
+                                <td class="p-4 text-center text-gray-500 text-2xl">-</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold">Manajemen Multi-lokasi & Waralaba</td>
+                                <td class="p-4 text-center text-gray-500 text-2xl">-</td>
+                                <td class="p-4 text-center text-gray-500 text-2xl">-</td>
+                                <td class="p-4 text-center text-green-400 text-2xl">✓</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+        <div class="bg-[#0A192F] glass-card rounded-xl p-8 w-full max-w-md relative border-2 border-[#3A7CA5]">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-2xl font-bold text-white mb-2">Konfirmasi Pembayaran</h2>
+            <p class="text-gray-400 mb-6">Anda akan berlangganan <span id="modal-package-name" class="font-bold text-white"></span>.</p>
+            
+            <form>
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Nama Lengkap</label>
+                    <input type="text" id="name" class="w-full bg-gray-900/50 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-[#F8BA17] focus:border-[#F8BA17]" placeholder="Nama Anda">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                    <input type="email" id="email" class="w-full bg-gray-900/50 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-[#F8BA17] focus:border-[#F8BA17]" placeholder="email@anda.com">
+                </div>
+                 <div class="mb-6">
+                    <label for="card-number" class="block text-sm font-medium text-gray-300 mb-1">Detail Kartu Kredit/Debit</label>
+                    <div class="p-2 bg-gray-900/50 border border-gray-700 rounded-md">
+                        <!-- Placeholder for a payment element like Stripe -->
+                        <p class="text-gray-500 text-center py-4">Formulir Elemen Pembayaran Aman</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900/50 p-4 rounded-lg mb-6">
+                    <div class="flex justify-between items-center text-gray-300">
+                        <span>Total Tagihan:</span>
+                        <span id="modal-total-price" class="font-bold text-xl text-white"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full cta-gold font-bold py-3 rounded-lg transition duration-300">Bayar Sekarang</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/30 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-12">
+            <!-- Social Media Icons -->
+            <div class="social-media">
+                <a href="https://www.instagram.com/badarbaraja/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@thinkspace" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://twitter.com/thinkspace" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/thinkspace" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.youtube.com/@thinkspace" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://medium.com/@thinkspace" aria-label="Medium"><i class="fab fa-medium"></i></a>
+                <a href="https://discord.gg/thinkspace" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                <a href="http://github.com/badarbaradja" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/badar-baradja-5b1bb820a/" aria-label="Linkedin"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <!-- Copyright Text -->
+            <div class="text-center text-gray-500">
+                &copy; 2025 ThinkSpace. Seluruh hak cipta.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Payment Modal Logic
+            const paymentModal = document.getElementById('payment-modal');
+            const choosePackageButtons = document.querySelectorAll('.choose-package-btn');
+            const closeModalButton = document.getElementById('close-modal-btn');
+            const modalPackageName = document.getElementById('modal-package-name');
+            const modalTotalPrice = document.getElementById('modal-total-price');
+
+            choosePackageButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const packageName = button.dataset.package;
+                    const packagePrice = parseInt(button.dataset.price);
+
+                    modalPackageName.textContent = `Paket ${packageName}`;
+                    modalTotalPrice.textContent = `Rp ${packagePrice.toLocaleString('id-ID')}`;
+                    
+                    paymentModal.classList.remove('hidden');
+                });
+            });
+
+            const closeModal = () => {
+                paymentModal.classList.add('hidden');
+            };
+
+            closeModalButton.addEventListener('click', closeModal);
+            // Optional: Close modal if background is clicked
+            paymentModal.addEventListener('click', (event) => {
+                if (event.target === paymentModal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

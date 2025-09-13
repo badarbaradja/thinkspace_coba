@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - ThinkSpace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A192F;
+            color: #F0F4F8;
+        }
+        .glass-card {
+            background: rgba(58, 124, 165, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(58, 124, 165, 0.3);
+        }
+        .cta-gold {
+            background-color: #F8BA17;
+            color: #0A192F;
+        }
+        .cta-gold:hover {
+            background-color: #f9c53a;
+        }
+        .cta-outline {
+            border: 2px solid #F8BA17;
+            color: #F8BA17;
+            background-color: transparent;
+        }
+        .cta-outline:hover {
+            background-color: #F8BA17;
+            color: #0A192F;
+        }
+        .nav-link.active {
+            color: #F8BA17;
+            font-weight: 600;
+        }
+        .social-btn {
+            border: 1px solid #3A7CA5;
+            transition: background-color 0.3s ease;
+        }
+        .social-btn:hover {
+            background-color: #3A7CA5;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="bg-[#0A192F]/80 backdrop-blur-sm sticky top-0 left-0 right-0 z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" id="logo" class="flex items-center space-x-3 text-2xl font-bold">
+                <img src="img/logo kuning.png" alt="ThinkSpace Logo" class="w-10 h-10 rounded-full object-cover">
+                <span class="text-white">Think<span class="text-[#F8BA17]">Space</span></span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Home</a>
+                <a href="fitur.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Fitur</a>
+                <a href="mitra.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Untuk Mitra</a>
+                <a href="kontak.html" class="nav-link text-gray-300 hover:text-[#F8BA17] transition duration-300">Kontak</a>
+            </nav>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="masuk.html" class="cta-outline font-semibold py-2 px-5 rounded-lg transition duration-300">Masuk</a>
+                <a href="daftar.html" class="cta-gold font-semibold py-2 px-5 rounded-lg transition duration-300">Daftar</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+             <a href="index.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Home</a>
+            <a href="fitur.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Fitur</a>
+            <a href="mitra.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Untuk Mitra</a>
+            <a href="kontak.html" class="block py-2 text-gray-300 hover:text-[#F8BA17] nav-link-mobile">Kontak</a>
+            <div class="mt-4 pt-4 border-t border-gray-800 space-y-3">
+                <a href="masuk.html" class="block text-center cta-outline font-semibold py-2 px-5 rounded-lg transition duration-300">Masuk</a>
+                <a href="daftar.html" class="block text-center cta-gold font-semibold py-2 px-5 rounded-lg transition duration-300">Daftar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+       <section class="min-h-screen flex items-center justify-center py-12 px-4">
+            <div class="w-full max-w-md">
+                <div class="glass-card rounded-xl p-8 border-2 border-[#3A7CA5]">
+                    <div class="text-center mb-8">
+                        <h1 class="text-3xl font-bold text-white">Selamat Datang Kembali</h1>
+                        <p class="text-gray-400 mt-2">Masuk untuk melanjutkan ke ThinkSpace</p>
+                    </div>
+
+                    <form class="space-y-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full bg-gray-900/50 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-[#F8BA17] focus:border-[#F8BA17]" placeholder="email@anda.com" required>
+                        </div>
+                        <div>
+                             <label for="password" class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                            <input type="password" id="password" class="w-full bg-gray-900/50 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-[#F8BA17] focus:border-[#F8BA17]" placeholder="••••••••" required>
+                        </div>
+                        <div class="text-right">
+                            <a href="#" class="text-sm text-[#F8BA17] hover:underline">Lupa Password?</a>
+                        </div>
+                        <div>
+                             <button type="submit" class="w-full cta-gold font-bold py-3 rounded-lg transition duration-300">Masuk</button>
+                        </div>
+                    </form>
+
+                    <div class="my-6 flex items-center">
+                        <div class="flex-grow border-t border-gray-700"></div>
+                        <span class="mx-4 text-gray-500 text-sm">atau masuk dengan</span>
+                        <div class="flex-grow border-t border-gray-700"></div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <button class="w-full social-btn flex items-center justify-center py-2 px-4 rounded-lg">
+                            <i class="fab fa-google text-white mr-3"></i>
+                            <span class="font-semibold text-white">Lanjutkan dengan Google</span>
+                        </button>
+                         <button class="w-full social-btn flex items-center justify-center py-2 px-4 rounded-lg">
+                            <i class="fab fa-facebook text-white mr-3"></i>
+                            <span class="font-semibold text-white">Lanjutkan dengan Facebook</span>
+                        </button>
+                    </div>
+                     <p class="text-center text-gray-400 mt-8 text-sm">
+                        Belum punya akun? <a href="daftar.html" class="font-semibold text-[#F8BA17] hover:underline">Daftar di sini</a>
+                    </p>
+                </div>
+            </div>
+       </section>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
